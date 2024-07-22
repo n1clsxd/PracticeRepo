@@ -1,4 +1,5 @@
-﻿using System;
+﻿using reckonwrit_drill.sample_classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,12 +10,9 @@ namespace reckonwrit_drill.reflection
 {
     internal class UsePrivateConstructor
     {
-        private string TypeStr = "reckonwrit_drill.reflection.SampleClass, reckonwrit drill";
-        public UsePrivateConstructor() { } 
-
         public void Perform()
         {
-            Type type = typeof(SampleClass);
+            Type type = typeof(Person);
 
             ConstructorInfo constructor = type.GetConstructor(
                 BindingFlags.Instance | BindingFlags.NonPublic, 
@@ -24,21 +22,12 @@ namespace reckonwrit_drill.reflection
 
             object instance = constructor.Invoke(["Mansa Musa", 15200000000]);
 
-            SampleClass sampleClass = (SampleClass) instance;
-
+            Person sampleClass = (Person) instance;
+            
             Console.WriteLine($"Name: {sampleClass.Name} \nGelt: {sampleClass.Money}");
         }
 
 
     }
-    internal class SampleClass
-    {
-        public string Name { get; set; }
-        public long Money { get; set; }
-        private SampleClass(string name, long money) 
-        {
-            Name = name;
-            Money = money;
-        }
-    }
+    
 }

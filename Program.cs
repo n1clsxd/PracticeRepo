@@ -7,7 +7,7 @@ namespace reckonwrit_drill
     {
         static void Main(string[] args)
         {
-           new UsePrivateConstructor().Perform();
+            new LogObject().Perform();
         }
     }
 
